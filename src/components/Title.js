@@ -1,6 +1,6 @@
 import React from "react";
 
-function directoryTitle (){
+function DirectoryTitle (){
 return (
 <div className="container">
       <div className="jumbotron">
@@ -10,4 +10,4 @@ return (
    </div>     
 );
 }
-export default directoryTitle;
+export default DirectoryTitle;
