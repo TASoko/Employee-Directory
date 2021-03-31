@@ -1,6 +1,30 @@
-import React from "react";
+import React,  { Component } from "react";
+import API from "../utils/API";
 
-function Table (){
+class employeeTable extends Component {
+  state = {
+    results: [],
+    error: ""
+  };
+
+  componentDidMount() {
+    API.getEmployees()
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            results: result.results
+          });
+        },
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      )
+  }
+  render (){
+
     return (
       <div className="container">
         <table className="table">
@@ -17,27 +41,17 @@ function Table (){
             </tr>
           </thead>
           <tbody>
+           {results.map(results => (
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <th scope="row" key={results.id}>{results.results}</th>
+              <td>{results.name.first} {results.name.last} {results.location.city} {results.location.country} {results.email} {results.phone} {results.cell}</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+             ))};
           </tbody>
         </table>
       </div>
     );
+  }
 }
 
-export default Table;
+export default employeeTable;
