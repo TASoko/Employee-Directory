@@ -4,7 +4,7 @@ import API from "../utils/API";
 class employeeTable extends Component {
   state = {
     results: [],
-    error: "",
+    error: "" ,
     filter:[],
   };
 
